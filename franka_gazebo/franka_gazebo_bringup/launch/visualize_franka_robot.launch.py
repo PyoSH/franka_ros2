@@ -99,10 +99,18 @@ def prepare_launch_description():
 
     # Gazebo Sim
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
-    gazebo_empty_world = IncludeLaunchDescription(
+    # gazebo_empty_world = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(
+    #         os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
+    #     launch_arguments={'gz_args': 'empty.sdf -r', }.items(),
+    # )
+    gazebo_world_file = os.path.join(
+        'home', 'pyo', 'franka_ros2_ws', 'src',
+         'franka_description', 'worlds', 'test.sdf')
+    gazebo_test_world = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
-        launch_arguments={'gz_args': 'empty.sdf -r', }.items(),
+        launch_arguments={'gz_args': f'{gazebo_world_file} -r', }.items(),
     )
 
     # Spawn
@@ -132,7 +140,7 @@ def prepare_launch_description():
         load_gripper_launch_argument,
         franka_hand_launch_argument,
         arm_id_launch_argument,
-        gazebo_empty_world,
+        gazebo_test_world,
         robot_state_publisher,
         rviz,
         spawn,
