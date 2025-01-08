@@ -136,6 +136,17 @@ def prepare_launch_description():
         output='screen'
     )
 
+    # Add ros_gz_bridge for parameter_bridge
+    parameter_bridge_node = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='parameter_bridge',
+        arguments=[
+            '/world/test/model/fr3/link/fr3_link7/sensor/camera_sensor/image@sensor_msgs/msg/Image@gz.msgs.Image'
+        ],
+        output='screen'
+    )
+
     return LaunchDescription([
         load_gripper_launch_argument,
         franka_hand_launch_argument,
@@ -144,6 +155,7 @@ def prepare_launch_description():
         robot_state_publisher,
         rviz,
         spawn,
+        parameter_bridge_node, 
         RegisterEventHandler(
                 event_handler=OnProcessExit(
                     target_action=spawn,
