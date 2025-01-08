@@ -105,7 +105,7 @@ def prepare_launch_description():
     #     launch_arguments={'gz_args': 'empty.sdf -r', }.items(),
     # )
     gazebo_world_file = os.path.join(
-        'home', 'pyo', 'franka_ros2_ws', 'src',
+        os.path.expanduser('~'), 'franka_ros2_ws', 'src',
          'franka_description', 'worlds', 'test.sdf')
     gazebo_test_world = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
