@@ -142,7 +142,7 @@ def prepare_launch_description():
         executable='parameter_bridge',
         name='parameter_bridge',
         arguments=[
-            '/world/test/model/fr3/link/fr3_link7/sensor/camera_sensor/image@sensor_msgs/msg/Image@gz.msgs.Image'
+            '/fr3/camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image'
         ],
         output='screen'
     )
